@@ -1,8 +1,8 @@
-# 2019 ACM RecSys Challenge 2'nd Place Team Layer 6 AI
-
 <p align="center">
 <a href="https://layer6.ai/"><img src="https://github.com/layer6ai-labs/DropoutNet/blob/master/logs/logobox.jpg" width="180"></a>
 </p>
+
+# 2019 ACM RecSys Challenge 2'nd Place Solution
 
 ## Introduction
 
