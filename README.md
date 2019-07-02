@@ -36,51 +36,62 @@ Once the above run is finished, you can locate the final submission file `submit
 
 ## Results
 
+#### Data Parsing / Feature Extraction
 
+We built our training and validation instances by treating each impression item in each session as an individual instance.
+Each instance has a binary target label determining whether the customer actually clicked out on the impression item, and a feature vector of length 330 which includes
+```
+Impressions item features:
+  * Item appearance rank
+  * Item appearance rank within star group
+  * Item appearance rank within rating group
+  * Item price rank
+  * Item price rank within star group
+  * Item price rank within rating group
+  * Item price rank within groups of higher appearance rank
+  * Item price
+  * Item price and median price difference
+  * Item metadata properties
+  * Global user action count, appearance rank, price rank averages
+  * Global item action count, appearance rank, price rank, star/rating group information
+  * Global item-item user action interaction scores
+  * Global user-user user action interaction scores
+  * Global item-item user impression interaction scores
+  * Global user-user user impression interaction scores
+  * Local and global item price count differences
+  * Local and global item action count and rank differences
+  * Local and global user action count and rank differences
+  
+Impression item summarization features:
+  * Mean appearance prices across top _k_ appearance rank items
+  * Mean appearance price ranks across top _k_ appearance rank items
+  * Mean of impression properties across impressions
+  * Mean of global item counts across impressions
+  * Entropy of counts
+  * Entropy of properties
+  
+Session features: 
+  * Stats on last 2 item action interactions prior to clickout
+  * Stats on last action interactions prior to clickout
+  * Impression length at clickout
+  * Step number at clickout
+  * Time duration between clickout and session start
+  * Device
+  
+Non-item features:
+  * Rank counts
+  * Price rank counts
+  * Platform counts
+  * City counts
+  * Device counts
+```
 
-#### 1) Data Parsing
+Given that there are ~900k total number of sessions along with the fact that most of them consists of 25 impression items, we are left with under 22M instances available for us to train and validate a model.
+We further downsample to negative samples to 20 negative samples per positive sample to arrive at a training set with 14.5M instances, and a validation set of 1.8M instances to train an XGB model.
 
-`train.csv`
-nItems = 927940
-sessionCount = 910732
+#### Training an XGB model
 
-nValidSessions = 78606
-
-`test.csv`
-nItems = 927997
-sessionCount = 291381
-
-
-#### 2) Feature Extraction
-
-We built our training and validation instances for each of our at most 25 impression item in each of our 910732 sessions.
-Each instance contains 330 features. and a binary target to indicate whether a user did end up clicking out on the impression item at clickout. 
-As there are typically 25 impression items at clickout, we naturally have a positive:negative ratio of 1:25, which we further downsample to 1:20 for training.
-Finally, we end with 14.5M instances for training and 1.8M instances for validation, in which we optimize for the validation AUC after verifying that the AUC and MRR are closely correlated in this competition.
-
-The type of features we extract that make up for our 330 features include:
-
-* User features: action counts, appearance rank counts, price rank counts
-
-* Item features: 
-
-* User-item features:
-
-* Session features:
-
-* Appearance rank, price rank, 
-
-* Mean aggregation of prices and price ranks of high appearance rank impressions
-
-* Price differences between impression item 
-
-* Counts based on impression appearance rank, price rank, platform, city, and device
-
-* One-hot encoding of item properties, and device
-
-#### 3) Training
-
-The shared XGB training hyperparameters we use for training model versions 1 and 2 are:
+The XGB training hyper parameters we use for training model versions 1 and 2 are:
 ```
 * booster = gbtree
 * eta = 0.1
@@ -93,14 +104,16 @@ The shared XGB training hyperparameters we use for training model versions 1 and
 * objective = binary:logistic
 * base_score = 0.1
 * seed = 3
-* lambda = 1 (version 1) / 4000 (version 2)
-* alpha = 0 (version 1) / 10 (version 2)
-* tree_method = hist (version 1) / exact (version 2) 
+* lambda = 1 [version 1] or 4000 [version 2]
+* alpha = 0 [version 1] or 10 [version 2]
+* tree_method = hist [version 1] or exact [version 2]
 ```
 
-From running our code provided, we reproduce results of
+We found that that the AUC and MRR metrics were closely correlated in this competition, and for simplicity used the validation AUC as the evaluation metric to maximize during training. By re-running the code provided in this repository, we reproduce results of
 
-| Model version | Number of features | Lambda (L2) | Alpha (L1) | Tree method | Training iterations | Training time (hours) | AUC (valid) | MRR (valid) | MRR (test/leaderboard) |
-|---|---|---|---|---|---|---|---|---|---|
-| 1 | 330 | 1 | 0 | hist |  435 | 1 | 0.9238 | 0.6747 | ~0.683 |
-| 2 | 330 | 4000 | 10 | exact |  | 60 | 0.9258 | 0.6774 | ~0.685 |
+| Model version | # of features | Training iterations | Training time (hours) | AUC (valid) | MRR (valid) | MRR (test) |
+|---|---|---|---|---|---|---|
+| 1 | 330 | 435 | 1 | 0.9238 | 0.6747 | ~0.683 |
+| 2 | 330 |  |  | 60 | 0.9258 | 0.6774 | ~0.685 |
+
+Our true final submission consists of a 2nd-stage blending of multiple XGB, RNN, and Transformer models which we detail in our workshop paper.
