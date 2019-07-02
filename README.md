@@ -2,7 +2,7 @@
 <a href="https://layer6.ai/"><img src="https://github.com/layer6ai-labs/DropoutNet/blob/master/logs/logobox.jpg" width="180"></a>
 </p>
 
-# 2019 ACM RecSys Challenge 2'nd Place Solution by Layer6 AI
+# 2019 ACM RecSys Challenge 2'nd Place Solution
 
 ## Introduction
 
