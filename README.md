@@ -91,7 +91,7 @@ We further downsample to negative samples to 20 negative samples per positive sa
 
 #### Training an XGB model
 
-The XGB training hyper parameters we use for training model versions 1 and 2 are:
+The XGB training hyper parameters we use for training model versions 1 and 2 are
 ```
 * booster = gbtree
 * eta = 0.1
@@ -109,10 +109,10 @@ The XGB training hyper parameters we use for training model versions 1 and 2 are
 * tree_method = hist [version 1] or exact [version 2]
 ```
 
-We found that that the AUC and MRR metrics were closely correlated in this competition, and for simplicity used the validation AUC as the evaluation metric to maximize during training. By re-running the code provided in this repository, we reproduce results of
+We found that that the AUC and MRR evaluation metrics were closely correlated in this competition, and for convenience maximized the validation AUC during training. By re-running the code provided in this repository, we reproduce results of
 
 
-| Model version | # features | Iterations | Runtime (hours) | AUC (valid) | MRR (valid) | MRR (test) |
+| Model version | # of features | Iterations | Runtime (hours) | AUC (valid) | MRR (valid) | MRR (test) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | 1 | 330 | 435 | 1 | 0.9238 | 0.6747 | ~0.683 |
 | 2 | 330 |   | 60 | 0.9258 | 0.6774 | ~0.685 |
