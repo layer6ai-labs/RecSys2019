@@ -109,7 +109,7 @@ alpha = 0 [version 1] or 10 [version 2]
 tree_method = hist [version 1] or exact [version 2]
 ```
 
-Model version `1` trains XGB quickly an approximate model using a histogram tree method with almost no regularization. Model version `2` on the other hand trains XGB using an exact tree method with heavy regularization to maximize model accuracy and generalizability.
+Model version `1` trains an XGB model quickly via a histogram tree method with almost no regularization. Model version `2` trains a more accurate and generalizable XGB model via an exact tree method with heavy regularization.
 
 For practical purposes, we found the AUC and MRR evaluation metrics to be closely correlated and for this reason maximized the validation AUC during training of XGB with early stopping functionality. By running the code provided in this repository, we reproduced results of
 
