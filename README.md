@@ -86,12 +86,12 @@ Non-item features:
   * Global device counts
 ```
 
-Given that there are ~900k total number of sessions along with the fact that most of them consists of 25 impression items, we are left with under 22M instances available for us to train and validate a model.
-We further downsample to negative samples to 20 negative samples per positive sample to arrive at a training set with 14.5M instances, and a validation set of 1.8M instances to train an XGB model.
+Given that there are ~900k total number of sessions in the dataset along with most of them consisting of 25 impression items, we had under 22M instances available for us to train and validate a model.
+We further downsample our negative samples to 20 negative samples per positive sample to arrive at a final training set with 14.5M instances, and validation set with 1.8M instances.
 
 #### Training an XGB model
 
-The XGB training hyper parameters we use for training model versions 1 and 2 are
+The XGB training hyper parameters we provide for training model versions 1 and 2 are
 ```
 * booster = gbtree
 * eta = 0.1
@@ -109,8 +109,7 @@ The XGB training hyper parameters we use for training model versions 1 and 2 are
 * tree_method = hist [version 1] or exact [version 2]
 ```
 
-We found that that the AUC and MRR evaluation metrics were closely correlated in this competition, and for convenience maximized the validation AUC during training. By re-running the code provided in this repository, we reproduce results of
-
+We found that the AUC and MRR evaluation metrics were closely correlated, and for this reason maximize the validation AUC to gauge when to stop training our XGB model. By running the code provided in this repository, we reproduced results of
 
 | Model version | # of features | Iterations | Runtime (hours) | AUC (valid) | MRR (valid) | MRR (test) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -118,4 +117,4 @@ We found that that the AUC and MRR evaluation metrics were closely correlated in
 | 2 | 330 |   | 60 | 0.9258 | 0.6774 | ~0.685 |
 
 
-Our true final competition submission achieves `MRR (test) ~ 0.688` via a 2nd-stage blending of multiple XGB, RNN, and Transformer models which we detail in our corresponding workshop paper.
+Our final competition submission achieves `MRR (test) ~ 0.688` via a 2nd-stage blending of multiple XGB, RNN, and Transformer models which we detail in our corresponding workshop paper.
