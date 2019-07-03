@@ -43,11 +43,11 @@ Each instance has a binary target label determined by whether the impression ite
 ```
 Impression Item Features
   * Item appearance rank
-  * Item appearance rank within star group
-  * Item appearance rank within rating group
+  * Item appearance rank within same star group
+  * Item appearance rank within same rating group
   * Item price rank
-  * Item price rank within star group
-  * Item price rank within rating group
+  * Item price rank within same star group
+  * Item price rank within same rating group
   * Item price rank within groups of higher appearance rank
   * Item price
   * Item price and median price difference
