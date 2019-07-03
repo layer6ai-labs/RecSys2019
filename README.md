@@ -28,11 +28,11 @@ Please use our `run.sh` script provided for end-to-end compilation and execution
 
 2) Set your output directory `outPath` to point to the directory where our code will output all relevant files to.
 
-3) Set the model version `modelVersion` to either be `1` or `2` based on our two provided sets of XGB training hyperparameters. Model version `1` trains XGB using a histogram tree method approach with minimal regularization and will achieve `AUC_valid ~ 0.9238, MRR_valid ~ 0.6747` in a runtime of ~1 hours. Model version `2` trains XGB using an exact tree method approach with heavy regularization and will achieve a higher score of `AUC_valid ~ , MRR_valid ~ ` at the cost of a much longer runtime of ~2-3 days.
+3) Set the model version `modelVersion` to be either `1` or `2` based on our two provided sets of XGB training hyper parameters. Model version `1` trains XGB using a histogram tree method with minimal regularization and will achieve `AUC_valid ~ 0.9238, MRR_valid ~ 0.6747` in a runtime of ~1 hours. Model version `2` trains XGB using an exact tree method with heavy regularization and will achieve a higher score of `AUC_valid ~ , MRR_valid ~ ` at the cost of a much longer runtime of ~2-3 days.
 
 4) Execute `./run.sh`
 
-Once the above run is finished, you can locate the final submission file `submit.csv` in your specified output path `outPath`. We prioritized speed over memory for this project so please use a machine with at least 200GB of RAM to run our model training and inference.
+Once the above run is finished, you can locate the final submission file `submit.csv` in your specified output directory `outPath`. We prioritized speed over memory for this project so please use a machine with at least 200GB of RAM to run our model training and inference.
 
 ## Results
 
