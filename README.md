@@ -32,7 +32,7 @@ Please use our `run.sh` script provided for end-to-end compilation and execution
 
 4) Execute `./run.sh`
 
-Once the above run is finished, you can locate the final submission file `submit.csv` in your specified output directory `outPath`. We prioritized speed over memory for this project so please use a machine with at least 200GB of RAM to run our model training and inference.
+Once the above run is finished, you can locate the final submission file `submit.csv` in your specified output path `outPath`. We prioritized speed over memory for this project so please use a machine with at least 200GB of RAM to run our model training and inference.
 
 ## Results
 
@@ -79,11 +79,11 @@ Session features:
   * Device
   
 Non-item features:
-  * Rank counts
-  * Price rank counts
-  * Platform counts
-  * City counts
-  * Device counts
+  * Global rank counts
+  * Global price rank counts
+  * Global platform counts
+  * Global city counts
+  * Global device counts
 ```
 
 Given that there are ~900k total number of sessions along with the fact that most of them consists of 25 impression items, we are left with under 22M instances available for us to train and validate a model.
