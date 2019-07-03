@@ -41,7 +41,7 @@ Once the above run is finished, you can locate the final submission file `submit
 We built our training and validation instances by treating each impression item in each session as an individual instance.
 Each instance has a binary target label determined by whether the impression item was clicked at clickout, and a 330-length feature vector including quantities such as
 ```
-Impression item features
+Impression Item Features
   * Item appearance rank
   * Item appearance rank within star group
   * Item appearance rank within rating group
@@ -61,7 +61,7 @@ Impression item features
   * Local and global item action count and rank differences
   * Local and global user action count and rank differences
   
-Summarization Over Impression Items Features
+Summarization-Over-Impression-Items Features
   * Mean appearance prices across top _k_ appearance rank items
   * Mean appearance price ranks across top _k_ appearance rank items
   * Mean of impression properties across impressions
