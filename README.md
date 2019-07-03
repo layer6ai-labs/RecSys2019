@@ -109,7 +109,7 @@ alpha = 0 [version 1] or 10 [version 2]
 tree_method = hist [version 1] or exact [version 2]
 ```
 
-We found that the AUC and MRR evaluation metrics were closely correlated, and for this reason maximize the validation AUC to gauge when to stop training our XGB model. By running the code provided in this repository, we reproduced results of
+We found that the AUC and MRR evaluation metrics were closely correlated, and for this reason maximized the validation AUC during training of our XGB model. By running the code provided in this repository using the XGB early stopping functionality, we reproduced results of
 
 | Model version | # of features | Iterations | Runtime (hours) | AUC (valid) | MRR (valid) | MRR (test) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
