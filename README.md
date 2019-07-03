@@ -111,9 +111,11 @@ The XGB training hyper parameters we use for training model versions 1 and 2 are
 
 We found that that the AUC and MRR metrics were closely correlated in this competition, and for simplicity used the validation AUC as the evaluation metric to maximize during training. By re-running the code provided in this repository, we reproduce results of
 
-| Model version | # of features | Training iterations | Training time (hours) | AUC (valid) | MRR (valid) | MRR (test) |
-|---|---|---|---|---|---|---|
-| 1 | 330 | 435 | 1 | 0.9238 | 0.6747 | ~0.683 |
-| 2 | 330 |  |  | 60 | 0.9258 | 0.6774 | ~0.685 |
 
-Our true final submission consists of a 2nd-stage blending of multiple XGB, RNN, and Transformer models which we detail in our workshop paper.
+| Model version | # features | Iterations | Runtime (hours) | AUC (valid) | MRR (valid) | MRR (test) |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | 330 | 435 | 1 | 0.9238 | 0.6747 | ~0.683 |
+| 2 | 330 |   | 60 | 0.9258 | 0.6774 | ~0.685 |
+
+
+Our true final competition submission achieves `MRR (test) ~ 0.688` via a 2nd-stage blending of multiple XGB, RNN, and Transformer models which we detail in our corresponding workshop paper.
