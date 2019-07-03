@@ -111,7 +111,7 @@ tree_method = hist [version 1] or exact [version 2]
 
 We found the AUC and MRR evaluation metrics to be closely correlated, and for this reason maximized the validation AUC during training of our XGB model. By running the code provided in this repository using the XGB early stopping functionality, we reproduced results of
 
-| XGB model version | # of features | Iterations | Runtime (hours) | Early stopping rounds | AUC (valid) | MRR (valid) | MRR (test) |
+| XGB model version | # of features | Early stopping rounds | Rounds | Runtime (hours) | AUC (valid) | MRR (valid) | MRR (test) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | 1 | 330 | 10 | 435 | 1 | 0.9238 | 0.6747 | ~0.683 |
 | 2 | 330 | 20 | 2820 | 32 | 0.9254 | 0.6775 | ~0.685 |
