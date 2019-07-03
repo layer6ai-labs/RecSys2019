@@ -244,13 +244,13 @@ public class RecSys19Model {
         params.put("maximize_evaluation_metrics", true);
         if (modelVersion.equals("1")) { // hist + no regularization
             rounds = 1_000;
-            earlyStoppingRounds = 10;
+            earlyStoppingRounds = 20;
             params.put("lambda", 1);
             params.put("alpha", 0);
             params.put("tree_method", "hist");
         } else if (modelVersion.equals("2")) { // exact + regularization
-            rounds = 6_000;
-            earlyStoppingRounds = 20;
+            rounds = 8_000;
+            earlyStoppingRounds = 50;
             params.put("lambda", 4000);
             params.put("alpha", 10);
             params.put("tree_method", "exact");
