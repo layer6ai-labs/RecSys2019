@@ -39,7 +39,7 @@ Once the above run is finished, you can locate the final submission file `submit
 #### Data Parsing / Feature Extraction
 
 We built our training and validation instances by treating each impression item of each session as an individual instance.
-For each instance, we assign a binary target label determined by whether the impression item was clicked at clickout, and a use feature vector of length 330 including quantities such as
+Each instance is assigned a binary target label of whether the impression item was clicked during clickout, as well as a feature vector of length 330 containing quantities such as
 ```
 Impression Item Features
   * Item appearance rank
