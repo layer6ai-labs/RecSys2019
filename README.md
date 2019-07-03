@@ -39,9 +39,9 @@ Once the above run is finished, you can locate the final submission file `submit
 #### Data Parsing / Feature Extraction
 
 We built our training and validation instances by treating each impression item in each session as an individual instance.
-Each instance has a binary target label determining whether the customer actually clicked out on the impression item, and a feature vector of length 330 which includes
+Each instance has a binary target label determined by whether the impression item was clicked at clickout, and a 330-length feature vector including quantities such as
 ```
-Impressions item features:
+Impression item features
   * Item appearance rank
   * Item appearance rank within star group
   * Item appearance rank within rating group
@@ -52,7 +52,6 @@ Impressions item features:
   * Item price
   * Item price and median price difference
   * Item metadata properties
-  * Global user action count, appearance rank, price rank averages
   * Global item action count, appearance rank, price rank, star/rating group information
   * Global item-item user action interaction scores
   * Global user-user user action interaction scores
@@ -62,7 +61,7 @@ Impressions item features:
   * Local and global item action count and rank differences
   * Local and global user action count and rank differences
   
-Impression item summarization features:
+Summarization Over Impression Items Features
   * Mean appearance prices across top _k_ appearance rank items
   * Mean appearance price ranks across top _k_ appearance rank items
   * Mean of impression properties across impressions
@@ -70,15 +69,16 @@ Impression item summarization features:
   * Entropy of counts
   * Entropy of properties
   
-Session features: 
+Session Features
   * Stats on last 2 item action interactions prior to clickout
   * Stats on last action interactions prior to clickout
   * Impression length at clickout
   * Step number at clickout
+  * Device at clickout
   * Time duration between clickout and session start
-  * Device
   
-Non-item features:
+Non-Item Features
+  * Global user action count, appearance rank, price rank averages
   * Global rank counts
   * Global price rank counts
   * Global platform counts
@@ -86,8 +86,8 @@ Non-item features:
   * Global device counts
 ```
 
-Given that there are ~900k total number of sessions in the dataset along with most of them consisting of 25 impression items, we had under 22M instances available for us to train and validate a model.
-We further downsample our negative samples to 20 negative samples per positive sample to arrive at a final training set with 14.5M instances, and validation set with 1.8M instances.
+Given that there are ~900k total number of sessions in the dataset along with most of them consisting of 25 impression items each, we had under 22M total instances available for us to train and validate a model.
+By further downsampling our negative samples to 20 negative samples per positive sample, and partitioning ~11% of the total instances for validation, we arrived at a final training set of 14.5M instances and a validation set of 1.8M instances.
 
 #### Training an XGB model
 
