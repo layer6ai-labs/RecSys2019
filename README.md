@@ -93,20 +93,20 @@ By further downsampling our negative samples to 20 negative samples per positive
 
 The XGB training hyper parameters we provide for training model versions 1 and 2 are
 ```
-* booster = gbtree
-* eta = 0.1
-* gamma = 0
-* min_child_weight = 1
-* max_depth = 10
-* subsample = 1
-* colsample_bynode = 0.8
-* scale_pos_weight = 1
-* objective = binary:logistic
-* base_score = 0.1
-* seed = 3
-* lambda = 1 [version 1] or 4000 [version 2]
-* alpha = 0 [version 1] or 10 [version 2]
-* tree_method = hist [version 1] or exact [version 2]
+booster = gbtree
+eta = 0.1
+gamma = 0
+min_child_weight = 1
+max_depth = 10
+subsample = 1
+colsample_bynode = 0.8
+scale_pos_weight = 1
+bjective = binary:logistic
+base_score = 0.1
+seed = 3
+lambda = 1 [version 1] or 4000 [version 2]
+alpha = 0 [version 1] or 10 [version 2]
+tree_method = hist [version 1] or exact [version 2]
 ```
 
 We found that the AUC and MRR evaluation metrics were closely correlated, and for this reason maximize the validation AUC to gauge when to stop training our XGB model. By running the code provided in this repository, we reproduced results of
