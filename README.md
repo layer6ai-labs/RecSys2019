@@ -87,7 +87,7 @@ Non-Item Features
 ```
 
 Given that there are ~900k total number of sessions in the dataset along with most of them consisting of 25 impression items each, we had under 22M total instances available for us to train and validate a model.
-By further downsampling our negative samples to 20 negative samples per positive sample, and partitioning ~11% of the total instances for validation, we arrived at a final training set of 14.5M instances and a validation set of 1.8M instances.
+By further downsampling our negative samples to 20 negative samples per positive sample, and partitioning out ~11% of the total instances for validation, we arrived at a final training set of 14.5M instances and a validation set of 1.8M instances.
 
 #### Training an XGB model
 
