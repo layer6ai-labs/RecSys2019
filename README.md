@@ -28,7 +28,7 @@ Please use our `run.sh` script provided for end-to-end compilation and execution
 
 2) Set your output directory `outPath` to where our code will output all relevant files to.
 
-3) Set the model version `modelVersion` to `1` or `2` based on our two provided sets of XGB training hyper parameters. Model version `1` achieves `AUC_valid ~ 0.9238, MRR_valid ~ 0.6747` over a 1 hour runtime. Model version `2` achieves a higher `AUC_valid ~ 0.9254, MRR_valid ~ 0.6775` over ~1.5 days runtime. Refer to the results section below for more details.
+3) Set the model version `modelVersion` to `1` or `2` based on our two provided sets of XGB training hyper parameters. Model version `1` achieves `MRR_valid ~ 0.6747` over a 1 hour runtime. Model version `2` achieves a higher `MRR_valid ~ 0.6775` over ~1.5 days runtime. Please refer to the results section below for more details.
 
 4) Execute `./run.sh`
 
