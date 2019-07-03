@@ -24,11 +24,11 @@ The model is implemented in Java and tested on the following environment:
 
 Please use our `run.sh` script provided for end-to-end compilation and execution of our entire pipeline (data parsing, feature extraction, training, validation, and submission) by following these steps:
 
-1) Set your data directory `dataPath` to the directory where you downloaded the official [RecSys 2019 Trivago dataset (V2)](https://recsys.trivago.cloud/challenge/dataset/) to. Verify that your `dataPath` contains `train.csv`, `test.csv`, and `item_metadata.csv` first!
+1) Set your data directory `dataPath` to where you downloaded the official [RecSys 2019 Trivago dataset (V2)](https://recsys.trivago.cloud/challenge/dataset/) to. Verify that your `dataPath` contains `train.csv`, `test.csv`, and `item_metadata.csv` first!
 
-2) Set your output directory `outPath` to the directory where our code will output all relevant files to.
+2) Set your output directory `outPath` to where our code will output all relevant files to.
 
-3) Set the model version `modelVersion` to `1` or `2` based on our two provided sets of XGB training hyper parameters. Model version `1` trains XGB using a histogram tree method with minimal regularization and will achieve `AUC_valid ~ 0.9238, MRR_valid ~ 0.6747` over a runtime of ~1 hours. Model version `2` trains XGB using an exact tree method with heavy regularization and will achieve a higher `AUC_valid ~ 0.9254, MRR_valid ~ 0.6775` at the cost of a much longer runtime of ~1.5 days.
+3) Set the model version `modelVersion` to `1` or `2` based on our two provided sets of XGB training hyper parameters. Model version `1` achieves `AUC_valid ~ 0.9238, MRR_valid ~ 0.6747` over a 1 hour runtime. Model version `2` achieves a higher `AUC_valid ~ 0.9254, MRR_valid ~ 0.6775` over ~1.5 days runtime. Refer to the results section below for more details.
 
 4) Execute `./run.sh`
 
@@ -109,7 +109,9 @@ alpha = 0 [version 1] or 10 [version 2]
 tree_method = hist [version 1] or exact [version 2]
 ```
 
-We found the AUC and MRR evaluation metrics to be closely correlated, and for this reason maximized the validation AUC during training of our XGB model. By running the code provided in this repository using the XGB early stopping functionality, we reproduced results of
+Model version `1` trains XGB quickly an approximate model using a histogram tree method with almost no regularization. Model version `2` on the other hand trains XGB using an exact tree method with heavy regularization to maximize model accuracy and generalizability.
+
+For practical purposes, we found the AUC and MRR evaluation metrics to be closely correlated and for this reason maximized the validation AUC during training of XGB with early stopping functionality. By running the code provided in this repository, we reproduced results of
 
 | XGB model version | # of features | Early stopping rounds | Rounds | Runtime (hours) | AUC (valid) | MRR (valid) | MRR (test) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
