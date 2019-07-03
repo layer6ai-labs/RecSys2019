@@ -24,11 +24,11 @@ The model is implemented in Java and tested on the following environment:
 
 Please use our `run.sh` script provided for end-to-end compilation and execution of our entire pipeline (data parsing, feature extraction, training, validation, and submission) by following these steps:
 
-1) Set your data directory `dataPath` to point to the directory where you downloaded the official [RecSys 2019 Trivago dataset (Version 2)](https://recsys.trivago.cloud/challenge/dataset/) to. Verify that your `dataPath` contains `train.csv`, `test.csv`, and `item_metadata.csv` first!
+1) Set your data directory `dataPath` to the directory where you downloaded the official [RecSys 2019 Trivago dataset (V2)](https://recsys.trivago.cloud/challenge/dataset/) to. Verify that your `dataPath` contains `train.csv`, `test.csv`, and `item_metadata.csv` first!
 
-2) Set your output directory `outPath` to point to the directory where our code will output all relevant files to.
+2) Set your output directory `outPath` to the directory where our code will output all relevant files to.
 
-3) Set the model version `modelVersion` to be either `1` or `2` based on our two provided sets of XGB training hyper parameters. Model version `1` trains XGB using a histogram tree method with minimal regularization and will achieve `AUC_valid ~ 0.9238, MRR_valid ~ 0.6747` in a runtime of ~1 hours. Model version `2` trains XGB using an exact tree method with heavy regularization and will achieve a higher score of `AUC_valid ~ , MRR_valid ~ ` at the cost of a much longer runtime of ~2-3 days.
+3) Set the model version `modelVersion` to `1` or `2` based on our two provided sets of XGB training hyper parameters. Model version `1` trains XGB using a histogram tree method with minimal regularization and will achieve `AUC_valid ~ 0.9238, MRR_valid ~ 0.6747` over a runtime of ~1 hours. Model version `2` trains XGB using an exact tree method with heavy regularization and will achieve a higher `AUC_valid ~ 0.9254, MRR_valid ~ 0.6775` at the cost of a much longer runtime of ~1.5 days.
 
 4) Execute `./run.sh`
 
@@ -78,7 +78,7 @@ Session Features
   * Time duration between clickout and session start
   
 Non-Item Features
-  * Global user action count, appearance rank, price rank averages
+  * Global user counts
   * Global rank counts
   * Global price rank counts
   * Global platform counts
@@ -109,12 +109,11 @@ alpha = 0 [version 1] or 10 [version 2]
 tree_method = hist [version 1] or exact [version 2]
 ```
 
-We found that the AUC and MRR evaluation metrics were closely correlated, and for this reason maximized the validation AUC during training of our XGB model. By running the code provided in this repository using the XGB early stopping functionality, we reproduced results of
+We found the AUC and MRR evaluation metrics to be closely correlated, and for this reason maximized the validation AUC during training of our XGB model. By running the code provided in this repository using the XGB early stopping functionality, we reproduced results of
 
-| Model version | # of features | Iterations | Runtime (hours) | AUC (valid) | MRR (valid) | MRR (test) |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| 1 | 330 | 435 | 1 | 0.9238 | 0.6747 | ~0.683 |
-| 2 | 330 |   | 60 | 0.9258 | 0.6774 | ~0.685 |
-
+| XGB model version | # of features | Iterations | Runtime (hours) | Early stopping rounds | AUC (valid) | MRR (valid) | MRR (test) |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | 330 | 10 | 435 | 1 | 0.9238 | 0.6747 | ~0.683 |
+| 2 | 330 | 20 | 2820 | 32 | 0.9254 | 0.6775 | ~0.685 |
 
 Our final competition submission achieves `MRR (test) ~ 0.688` via a 2nd-stage blending of multiple XGB, RNN, and Transformer models which we detail in our corresponding workshop paper.
