@@ -2,12 +2,11 @@
 <a href="https://layer6.ai/"><img src="https://github.com/layer6ai-labs/DropoutNet/blob/master/logs/logobox.jpg" width="180"></a>
 </p>
 
-# 2019 ACM RecSys Challenge 2'nd Place Solution
+# [2019 ACM RecSys Challenge](http://www.recsyschallenge.com/2019) 2'nd Place Solution
 
-As most online activity lives in the context of a session, dynamic in-session personalization will require merchants to re-adjust their recommendations on-the-fly to users navigating through their platform.
-  A popular approach is to re-rank recommendations based on metadata and feedback of past user sessions.
-  This motivates the [_2019 ACM RecSys Challenge_](http://www.recsyschallenge.com/2019/): can one optimally re-rank Trivago's current hotel recommendations using their historical user session data? 
-  We present our 2'nd place solution to this problem here by first contextualizing Trivago user sessions in a global and local manner, then training a Gradient Boosting model for item recommendation re-ranking.
+**Team members**: Maksims Volkovs, Anson Wong, Zhaoyue Cheng, Felipe Perez, Ilya Stanevich and Yichao Lu [(paper)](http://www.cs.toronto.edu/~mvolkovs/recsys2019_challenge.pdf)
+
+Contact: maks@layer6.ai
 
 ## Environment
 
